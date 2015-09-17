@@ -8,11 +8,14 @@ using namespace std;
 class FileReader
 {
 public:
+  FileReader();
+
   bool OpenFile(std::string i_fileName);
   std::string const GetNextWord();
+  bool bHasNewLine();
 
 private:
-  ifstream m_curFile;
+  ifstream *m_curFile;
 
 };
 #endif

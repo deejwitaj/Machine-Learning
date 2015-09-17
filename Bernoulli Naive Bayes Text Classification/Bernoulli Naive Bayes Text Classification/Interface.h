@@ -6,9 +6,13 @@
 class Interface
 {
 public:
+  void Init();
 
 private:
   FileReader m_fileReader;
+
+  void pause();
+  std::string GetVocabFile();
 };
 #endif
 
