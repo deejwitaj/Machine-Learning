@@ -12,7 +12,7 @@ void Interface::Init()
 
   m_fileReader.OpenFile(GetVocabFile());
   while (m_fileReader.bHasNewLine())
-    cout << m_fileReader.GetNextWord();
+    cout << m_fileReader.GetNextWord().c_str() << "\n";
 }
 
 void Interface::pause()

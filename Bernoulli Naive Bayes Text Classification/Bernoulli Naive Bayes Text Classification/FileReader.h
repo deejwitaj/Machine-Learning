@@ -15,7 +15,7 @@ public:
   bool bHasNewLine();
 
 private:
-  ifstream *m_curFile;
+  ifstream m_curFile;
 
 };
 #endif

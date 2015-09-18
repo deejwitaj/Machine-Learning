@@ -1,12 +1,12 @@
 #include "FileReader.h"
 
 #include <iostream>
+#include <string>
 
 std::string VOCABFILE = "vocabularies.txt";
 //"C:\\Users\\Didier\\Google Drive\\Grad School\\CAP 5610 - Machine Learning\\Homework\\Assignment 1\\vocabularies.txt";
 
 FileReader::FileReader()
-  : m_curFile(nullptr)
 {
 }
 
@@ -14,28 +14,30 @@ FileReader::FileReader()
 bool FileReader::OpenFile(std::string i_fileName)
 {
   cout << "Opening file at path " << VOCABFILE.c_str() << endl << endl;
-  m_curFile = new ifstream(VOCABFILE);
+  m_curFile.open(VOCABFILE);
 
-  if (m_curFile->is_open())
+  if (m_curFile.is_open())
   {
-    cout << "File opened successfully!";
+    cout << "File opened successfully!\n\n";
     return true;
   }
   
-  cout << "Opening file failed";
+  cout << "Opening file failed\n\n";
   return false;
 }
 
 std::string const FileReader::GetNextWord()
 {
-  char* newLine = "";
-  if(!m_curFile->eof())
-    m_curFile->getline(newLine, 256);
+  using namespace std;
+
+  string newLine;
+  if(!m_curFile.eof())
+    getline(m_curFile, newLine);
 
   return newLine;
 }
 
 bool FileReader::bHasNewLine()
 {
-  return !m_curFile->eof();
+  return !m_curFile.eof();
 }
