@@ -22,6 +22,9 @@
     <ClInclude Include="Interface.h">
       <Filter>Interface</Filter>
     </ClInclude>
+    <ClInclude Include="Parameter.h">
+      <Filter>Brain</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FileReader.cpp">
@@ -29,6 +32,9 @@
     </ClCompile>
     <ClCompile Include="Interface.cpp">
       <Filter>Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Parameter.cpp">
+      <Filter>Brain</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

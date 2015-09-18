@@ -120,10 +120,12 @@
   <ItemGroup>
     <ClInclude Include="FileReader.h" />
     <ClInclude Include="Interface.h" />
+    <ClInclude Include="Parameter.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FileReader.cpp" />
     <ClCompile Include="Interface.cpp" />
+    <ClCompile Include="Parameter.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
