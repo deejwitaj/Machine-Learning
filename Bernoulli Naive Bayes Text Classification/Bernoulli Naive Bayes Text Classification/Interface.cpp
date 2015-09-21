@@ -8,11 +8,31 @@ using namespace::std;
 
 void Interface::Init()
 {
-  FileReader m_fileReader;
+  InitializeVocabulary();
+  BeginTraining();
+  pause();
+}
 
-  m_fileReader.OpenFile(GetVocabFile());
+void Interface::BeginTraining()
+{
+  cout << "What is my training file?\n";
+  m_fileReader.OpenFile(GetFile());
   while (m_fileReader.bHasNewLine())
-    cout << m_fileReader.GetNextWord().c_str() << "\n";
+  {
+    cout << m_fileReader.GetNextWord() + "\n";
+    pause();
+  }
+
+}
+void Interface::InitializeVocabulary()
+{
+  cout << "What is the path of the vocabulary file I will be using?\n";
+  m_fileReader.OpenFile(GetFile());
+  cout << "Loading vocab file...\n";
+  while (m_fileReader.bHasNewLine())
+    m_agent.AddVocabWord(m_fileReader.GetNextWord());
+  m_fileReader.CloseFile();
+  cout << "Vocab file loaded.\n";
 }
 
 void Interface::pause()
@@ -20,11 +40,16 @@ void Interface::pause()
   std::cin.get();
 }
 
-std::string Interface::GetVocabFile()
+std::string Interface::GetDirectoryOfFiles()
+{
+  std::string input = "";
+  return input;
+}
+
+std::string Interface::GetFile()
 {
   std::string input = "";
 
-  cout << "What is the path of the vocabulary file I will be using?\n";
   getline(cin, input);
   return input;
 }

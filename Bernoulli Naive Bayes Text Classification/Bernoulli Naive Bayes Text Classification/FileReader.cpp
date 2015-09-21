@@ -13,7 +13,7 @@ FileReader::FileReader()
 //Opens file in passed in location and sets its ifstream to the first line in file
 bool FileReader::OpenFile(std::string i_fileName)
 {
-  cout << "Opening file at path " << VOCABFILE.c_str() << endl << endl;
+  cout << "Opening file at path " << i_fileName.c_str() << endl << endl;
   m_curFile.open(VOCABFILE);
 
   if (m_curFile.is_open())
@@ -24,6 +24,11 @@ bool FileReader::OpenFile(std::string i_fileName)
   
   cout << "Opening file failed\n\n";
   return false;
+}
+
+void FileReader::CloseFile()
+{
+  m_curFile.close();
 }
 
 std::string const FileReader::GetNextWord()

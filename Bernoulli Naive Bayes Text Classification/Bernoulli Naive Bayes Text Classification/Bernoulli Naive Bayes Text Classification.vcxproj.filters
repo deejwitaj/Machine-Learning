@@ -25,6 +25,12 @@
     <ClInclude Include="Parameter.h">
       <Filter>Brain</Filter>
     </ClInclude>
+    <ClInclude Include="DirectoryReader.h">
+      <Filter>File Reader</Filter>
+    </ClInclude>
+    <ClInclude Include="Agent.h">
+      <Filter>Brain</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FileReader.cpp">
@@ -34,6 +40,9 @@
       <Filter>Interface</Filter>
     </ClCompile>
     <ClCompile Include="Parameter.cpp">
+      <Filter>Brain</Filter>
+    </ClCompile>
+    <ClCompile Include="Agent.cpp">
       <Filter>Brain</Filter>
     </ClCompile>
   </ItemGroup>
