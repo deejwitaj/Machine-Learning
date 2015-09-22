@@ -26,7 +26,7 @@ public:
   void BeginTraining();
   void BeginTesting();
 
-  void TrainOnFile(ifstream *i_fileStream, std::string const &i_parameter);
+  void TrainOnFile(std::string const &i_fileName, std::string const &i_parameter);
   std::string ConvertToLowerCase(std::string const &i_line);
 
 private:

@@ -12,6 +12,10 @@ void Parameter::insert(int i_vocabWord, int i_classifier, long i_probability)
 
 float Parameter::GetProbability(std::pair<int, int> i_parameter) const
 {
+  auto it = m_parameters.find(i_parameter);
+  if (it == m_parameters.end())
+    return 0;
+
   return m_parameters.find(i_parameter)->second;
 }
 
@@ -37,7 +41,6 @@ void Parameter::SetProbability(std::pair<int, int> i_parameter, long i_probabili
     it->second = i_probability;
   else
     insert(i_parameter, i_probability);
-
 }
 
 void Parameter::SetProbability(int i_vocabWord, int i_parameter, long i_probability)

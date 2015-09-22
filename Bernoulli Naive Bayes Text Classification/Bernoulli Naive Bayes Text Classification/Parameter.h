@@ -7,8 +7,6 @@
 class Parameter
 {
 public:
-  void insert(std::pair<int, int> i_parameter, long i_probability = 0);
-  void insert(int i_vocabWord, int i_classifier, long i_probability = 0);
 
   float GetProbability(std::pair<int, int> i_parameter) const;
   float GetProbability(int i_vocabWord, int i_classifier) const;
@@ -20,6 +18,9 @@ public:
 
 private:
   std::map<std::pair<int, int>, long> m_parameters;
+
+  void insert(std::pair<int, int> i_parameter, long i_probability = 0);
+  void insert(int i_vocabWord, int i_classifier, long i_probability = 0);
 };
 
 #endif

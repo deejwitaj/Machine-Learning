@@ -15,14 +15,34 @@ void Interface::Init()
 
 void Interface::BeginTraining()
 {
-  cout << "What is my training file?\n";
-  m_fileReader.OpenFile(GetInput());
-  while (m_fileReader.bHasNewLine())
-  {
-    cout << m_fileReader.GetNextWord() + "\n";
-    pause();
-  }
+  cout << "What is my next training classifier?\n";
+  m_directoryReader.SetDirectory(GetInput());
+  
+  std::string nextFileName = "";
 
+  do {
+    std::string fileName = "";
+    m_directoryReader.GetCurrentFileName(fileName);
+  } while (m_directoryReader.bHasNextFileName());
+
+  cout << "Are there any more classifiers I should train on?\nPlease type either y or n\n";
+  if (AskYesOrNo())
+    BeginTraining();
+
+}
+
+bool Interface::AskYesOrNo()
+{
+  std::string answer = GetInput();
+  if (!answer.compare("y"))
+    return true;
+  else if(!answer.compare("n"))
+    return false;
+  else
+  {
+    cout << "Please give a valid answer\n y or n\n";
+    return AskYesOrNo();
+  }
 }
 void Interface::InitializeVocabulary()
 {

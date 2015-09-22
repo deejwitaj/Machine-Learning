@@ -54,5 +54,8 @@
     <ClCompile Include="FileWriter.cpp">
       <Filter>File Editing</Filter>
     </ClCompile>
+    <ClCompile Include="DirectoryReader.cpp">
+      <Filter>File Editing</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

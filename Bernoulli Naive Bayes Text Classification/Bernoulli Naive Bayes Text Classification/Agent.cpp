@@ -28,9 +28,8 @@ void Agent::BeginTesting()
   m_state = TESTING;
 }
 
-void Agent::TrainOnFile(ifstream *i_fileStream, std::string const &i_parameter)
+void Agent::TrainOnFile(std::string const &i_fileName, std::string const &i_parameter)
 {
-
 }
 
 std::string Agent::ConvertToLowerCase(std::string const &i_line)
