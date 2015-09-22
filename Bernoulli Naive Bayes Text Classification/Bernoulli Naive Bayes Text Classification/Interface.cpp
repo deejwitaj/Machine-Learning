@@ -16,7 +16,7 @@ void Interface::Init()
 void Interface::BeginTraining()
 {
   cout << "What is my training file?\n";
-  m_fileReader.OpenFile(GetFile());
+  m_fileReader.OpenFile(GetInput());
   while (m_fileReader.bHasNewLine())
   {
     cout << m_fileReader.GetNextWord() + "\n";
@@ -27,12 +27,7 @@ void Interface::BeginTraining()
 void Interface::InitializeVocabulary()
 {
   cout << "What is the path of the vocabulary file I will be using?\n";
-  m_fileReader.OpenFile(GetFile());
-  cout << "Loading vocab file...\n";
-  while (m_fileReader.bHasNewLine())
-    m_agent.AddVocabWord(m_fileReader.GetNextWord());
-  m_fileReader.CloseFile();
-  cout << "Vocab file loaded.\n";
+  m_agent.AddVocabFile(GetInput());
 }
 
 void Interface::pause()
@@ -46,7 +41,7 @@ std::string Interface::GetDirectoryOfFiles()
   return input;
 }
 
-std::string Interface::GetFile()
+std::string Interface::GetInput()
 {
   std::string input = "";
 

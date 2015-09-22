@@ -9,7 +9,6 @@ class FileReader
 {
 public:
   FileReader();
-  FileReader(ifstream m_curFile);
 
   bool OpenFile(std::string i_fileName);
   void CloseFile();

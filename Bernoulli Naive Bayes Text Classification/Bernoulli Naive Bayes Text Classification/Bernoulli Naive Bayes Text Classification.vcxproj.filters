@@ -5,19 +5,22 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="File Reader">
-      <UniqueIdentifier>{a427cc55-a2ee-4db0-914c-28d6aec5a9a6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Brain">
       <UniqueIdentifier>{970d41ac-3a48-473c-8c0f-1d137eb176ca}</UniqueIdentifier>
     </Filter>
     <Filter Include="Interface">
       <UniqueIdentifier>{ea96c3be-e0d4-41b1-9fe6-06a28253292c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="File Writier">
+      <UniqueIdentifier>{7ee849f6-3c24-4ab7-864d-9db6adc63743}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="File Editing">
+      <UniqueIdentifier>{a427cc55-a2ee-4db0-914c-28d6aec5a9a6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FileReader.h">
-      <Filter>File Reader</Filter>
+      <Filter>File Editing</Filter>
     </ClInclude>
     <ClInclude Include="Interface.h">
       <Filter>Interface</Filter>
@@ -26,15 +29,18 @@
       <Filter>Brain</Filter>
     </ClInclude>
     <ClInclude Include="DirectoryReader.h">
-      <Filter>File Reader</Filter>
+      <Filter>File Editing</Filter>
     </ClInclude>
     <ClInclude Include="Agent.h">
       <Filter>Brain</Filter>
     </ClInclude>
+    <ClInclude Include="FileWriter.h">
+      <Filter>File Writier</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FileReader.cpp">
-      <Filter>File Reader</Filter>
+      <Filter>File Editing</Filter>
     </ClCompile>
     <ClCompile Include="Interface.cpp">
       <Filter>Interface</Filter>
@@ -44,6 +50,9 @@
     </ClCompile>
     <ClCompile Include="Agent.cpp">
       <Filter>Brain</Filter>
+    </ClCompile>
+    <ClCompile Include="FileWriter.cpp">
+      <Filter>File Editing</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

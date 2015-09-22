@@ -121,12 +121,14 @@
     <ClInclude Include="Agent.h" />
     <ClInclude Include="DirectoryReader.h" />
     <ClInclude Include="FileReader.h" />
+    <ClInclude Include="FileWriter.h" />
     <ClInclude Include="Interface.h" />
     <ClInclude Include="Parameter.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Agent.cpp" />
     <ClCompile Include="FileReader.cpp" />
+    <ClCompile Include="FileWriter.cpp" />
     <ClCompile Include="Interface.cpp" />
     <ClCompile Include="Parameter.cpp" />
   </ItemGroup>

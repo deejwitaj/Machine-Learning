@@ -3,9 +3,6 @@
 #include <iostream>
 #include <string>
 
-std::string VOCABFILE = "vocabularies.txt";
-//"C:\\Users\\Didier\\Google Drive\\Grad School\\CAP 5610 - Machine Learning\\Homework\\Assignment 1\\vocabularies.txt";
-
 FileReader::FileReader()
 {
 }
@@ -14,7 +11,7 @@ FileReader::FileReader()
 bool FileReader::OpenFile(std::string i_fileName)
 {
   cout << "Opening file at path " << i_fileName.c_str() << endl << endl;
-  m_curFile.open(VOCABFILE);
+  m_curFile.open(i_fileName);
 
   if (m_curFile.is_open())
   {

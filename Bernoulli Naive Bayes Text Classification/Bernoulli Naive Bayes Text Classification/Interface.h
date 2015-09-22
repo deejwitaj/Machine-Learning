@@ -16,7 +16,7 @@ private:
   void pause();
 
   std::string GetDirectoryOfFiles();
-  std::string GetFile();
+  std::string GetInput();
   void InitializeVocabulary();
   void BeginTraining();
 };
