@@ -12,6 +12,7 @@ public:
 
   bool OpenFile(std::string i_fileName);
   void CloseFile();
+  std::string const GetNextLine();
   std::string const GetNextWord();
   bool bHasNewLine();
 

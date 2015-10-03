@@ -28,6 +28,17 @@ void FileReader::CloseFile()
   m_curFile.close();
 }
 
+std::string const FileReader::GetNextLine()
+{
+  using namespace std;
+
+  string newLine;
+  if (!m_curFile.eof())
+    getline(m_curFile, newLine);
+
+  return newLine;
+}
+
 std::string const FileReader::GetNextWord()
 {
   using namespace std;

@@ -11,9 +11,6 @@
     <Filter Include="Interface">
       <UniqueIdentifier>{ea96c3be-e0d4-41b1-9fe6-06a28253292c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="File Writier">
-      <UniqueIdentifier>{7ee849f6-3c24-4ab7-864d-9db6adc63743}</UniqueIdentifier>
-    </Filter>
     <Filter Include="File Editing">
       <UniqueIdentifier>{a427cc55-a2ee-4db0-914c-28d6aec5a9a6}</UniqueIdentifier>
     </Filter>
@@ -35,7 +32,7 @@
       <Filter>Brain</Filter>
     </ClInclude>
     <ClInclude Include="FileWriter.h">
-      <Filter>File Writier</Filter>
+      <Filter>File Editing</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
