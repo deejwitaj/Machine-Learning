@@ -8,6 +8,9 @@
     <Filter Include="File Editing">
       <UniqueIdentifier>{8516d3c4-52a9-4e3a-b2ab-70848aefc9e1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Interface">
+      <UniqueIdentifier>{e1d368c0-7252-4626-bbb6-eea90e0bc05b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Bernoulli Naive Bayes Text Classification\Bernoulli Naive Bayes Text Classification\FileReader.cpp">
@@ -16,12 +19,24 @@
     <ClCompile Include="..\..\Bernoulli Naive Bayes Text Classification\Bernoulli Naive Bayes Text Classification\FileWriter.cpp">
       <Filter>File Editing</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Bernoulli Naive Bayes Text Classification\Bernoulli Naive Bayes Text Classification\DirectoryReader.cpp">
+      <Filter>File Editing</Filter>
+    </ClCompile>
+    <ClCompile Include="Interface.cpp">
+      <Filter>Interface</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Bernoulli Naive Bayes Text Classification\Bernoulli Naive Bayes Text Classification\FileReader.h">
       <Filter>File Editing</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Bernoulli Naive Bayes Text Classification\Bernoulli Naive Bayes Text Classification\FileWriter.h">
+      <Filter>File Editing</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Bernoulli Naive Bayes Text Classification\Bernoulli Naive Bayes Text Classification\DirectoryReader.h">
       <Filter>File Editing</Filter>
     </ClInclude>
   </ItemGroup>

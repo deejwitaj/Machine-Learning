@@ -74,6 +74,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\Users\Didier\Source\Repos\Machine Learning\Bernoulli Naive Bayes Text Classification\Bernoulli Naive Bayes Text Classification;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -118,12 +119,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Bernoulli Naive Bayes Text Classification\Bernoulli Naive Bayes Text Classification\DirectoryReader.cpp" />
     <ClCompile Include="..\..\Bernoulli Naive Bayes Text Classification\Bernoulli Naive Bayes Text Classification\FileReader.cpp" />
     <ClCompile Include="..\..\Bernoulli Naive Bayes Text Classification\Bernoulli Naive Bayes Text Classification\FileWriter.cpp" />
+    <ClCompile Include="Interface.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Bernoulli Naive Bayes Text Classification\Bernoulli Naive Bayes Text Classification\DirectoryReader.h" />
     <ClInclude Include="..\..\Bernoulli Naive Bayes Text Classification\Bernoulli Naive Bayes Text Classification\FileReader.h" />
     <ClInclude Include="..\..\Bernoulli Naive Bayes Text Classification\Bernoulli Naive Bayes Text Classification\FileWriter.h" />
+    <ClInclude Include="Interface.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
