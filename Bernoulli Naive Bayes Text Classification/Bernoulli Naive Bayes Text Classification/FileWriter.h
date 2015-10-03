@@ -8,14 +8,11 @@ using namespace std;
 class FileWriter
 {
 public:
-  FileWriter();
-  ~FileWriter();
-
   void OpenFile(std::string const &i_fileName);
   void AddLine(std::string const &i_line);
   void CloseFile();
 
 private:
-  ofstream *m_curFile;
+  ofstream m_curFile;
 };
 #endif

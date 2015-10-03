@@ -10,17 +10,16 @@ using namespace std;
 class DirectoryReader
 {
 public:
-  DirectoryReader();
-  ~DirectoryReader();
 
   bool SetDirectory(std::string i_directory);
   bool bHasNextFileName();
   bool GetCurrentFileName(std::string &io_fileName);
+  std::string GetCurrentDir() { return m_directoryName; }
 
 private:
 
   WIN32_FIND_DATA m_fileData;
   HANDLE m_fileHandle;
-  std::string *m_pCurDirectory;
+  std::string m_directoryName;
 };
 #endif

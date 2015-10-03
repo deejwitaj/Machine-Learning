@@ -5,9 +5,12 @@ using namespace std;
 
 #include "Parameter.h"
 #include "FileReader.h"
+#include "FileWriter.h"
 
 #include <set>
 #include <list>
+#include <vector>
+#include <map>
 
 #include <fstream>
 
@@ -20,6 +23,8 @@ enum STATE
 class Agent
 {
 public:
+  Agent();
+
   void AddVocabWord(std::string const &i_vocabWord);
   void AddVocabFile(std::string const &i_fileName);
   
@@ -29,10 +34,25 @@ public:
   void TrainOnFile(std::string const &i_fileName, std::string const &i_parameter);
   std::string ConvertToLowerCase(std::string const &i_line);
 
+  void PrintResults();
+
+  size_t GetNumOfLearnedClassifiers();
+
 private:
   FileReader m_fileReader;
+  FileWriter m_fileWriter;
   Parameter m_parameters;
-  std::set<std::string> m_vocabulary;
+  std::map<std::string, bool> m_vocabulary;
+  std::set<std::string> m_classifiers;
+  std::map<std::pair<std::string, std::string>, int> m_parameterJC; //First is vocab word, second is parameter, third is the number of parameter documents with word
+  int m_numOfDocuments;
+  std::map<std::string, int> m_numOfDocumentsInEachClassifier;
   STATE m_state;
+
+  void AddLearnedClassifier(std::string const &i_classifierName);
+  void IncrementNumOfDocuments();
+  void IncrememntDocumentsInClassifier(std::string const &i_classifier);
+  void IncrementNumOfDocumentsInClassifierWithVocabWord(std::string const &i_vocabWord, std::string const &classifier);
+  void SetVocabularyBools(bool b);
 };
 #endif

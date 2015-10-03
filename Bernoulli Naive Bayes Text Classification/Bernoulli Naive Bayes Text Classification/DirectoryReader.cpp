@@ -2,18 +2,11 @@
 
 #include <iostream>
 
-DirectoryReader::DirectoryReader()
-  : m_pCurDirectory(nullptr)
-{}
-
-DirectoryReader::~DirectoryReader()
-{
-  delete m_pCurDirectory;
-}
-
 bool DirectoryReader::SetDirectory(std::string i_directoryName)
 {
   cout << "Setting directory.\n";
+
+  m_directoryName = i_directoryName;
 
   m_fileHandle = FindFirstFile(i_directoryName.c_str(), &m_fileData);
   if (m_fileHandle == INVALID_HANDLE_VALUE)
@@ -36,7 +29,7 @@ bool DirectoryReader::bHasNextFileName()
       cout << "No next file!\n";
       return false;
     }
-    cout << "Found next file.\n";
+    //cout << "Found next file.\n";
     return true;
   }
 
@@ -48,7 +41,8 @@ bool DirectoryReader::GetCurrentFileName(std::string &io_fileName)
 {
   if (m_fileHandle != INVALID_HANDLE_VALUE)
   {
-    cout << "File name is: " << m_fileData.cFileName << endl << endl;
+    //cout << "File name is: " << m_fileData.cFileName << endl << endl;
+    io_fileName = m_fileData.cFileName;
     return true;
   }
 

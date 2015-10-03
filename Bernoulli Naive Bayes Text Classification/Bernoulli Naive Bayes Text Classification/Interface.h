@@ -5,6 +5,8 @@
 #include "DirectoryReader.h"
 #include "Agent.h"
 
+#include <list>
+
 class Interface
 {
 public:
@@ -14,15 +16,16 @@ private:
   Agent m_agent;
   FileReader m_fileReader;
   DirectoryReader m_directoryReader;
+  std::list<std::string> m_classifiers;
 
   void pause();
 
-  std::string GetDirectoryOfFiles();
+  std::list<std::string> GetDirectoryOfFiles();
   std::string GetInput();
 
   bool AskYesOrNo();
   void InitializeVocabulary();
-  void BeginTraining();
+  void TrainClassifier();
 };
 #endif
 

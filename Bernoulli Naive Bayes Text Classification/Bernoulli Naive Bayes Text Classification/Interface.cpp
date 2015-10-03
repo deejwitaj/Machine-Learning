@@ -9,25 +9,34 @@ using namespace::std;
 void Interface::Init()
 {
   InitializeVocabulary();
-  BeginTraining();
+  TrainClassifier();
   pause();
 }
 
-void Interface::BeginTraining()
+void Interface::TrainClassifier()
 {
-  cout << "What is my next training classifier?\n";
-  m_directoryReader.SetDirectory(GetInput());
+  cout << "What are my training classifier?\n";
+  m_classifiers = GetDirectoryOfFiles();
+  for (auto it : m_classifiers)
+  {
+    m_directoryReader.SetDirectory(it + "\\*.txt");
   
-  std::string nextFileName = "";
+    std::string nextFileName = "";
 
-  do {
-    std::string fileName = "";
-    m_directoryReader.GetCurrentFileName(fileName);
-  } while (m_directoryReader.bHasNextFileName());
+    do {
+      std::string fileName = "";
+      m_directoryReader.GetCurrentFileName(fileName);
+      m_agent.TrainOnFile(it + "\\" + fileName, it);
+    } while (m_directoryReader.bHasNextFileName());
+  }
+  //std::string classifier = GetInput();
 
-  cout << "Are there any more classifiers I should train on?\nPlease type either y or n\n";
+  /*cout << "Are there any more classifiers I should train on?\nPlease type either y or n\n";
   if (AskYesOrNo())
-    BeginTraining();
+    TrainClassifier();
+
+  else*/
+    m_agent.PrintResults();
 
 }
 
@@ -55,10 +64,20 @@ void Interface::pause()
   std::cin.get();
 }
 
-std::string Interface::GetDirectoryOfFiles()
+std::list<std::string> Interface::GetDirectoryOfFiles()
 {
-  std::string input = "";
-  return input;
+  std::list<std::string> ret;
+  ret.insert(ret.end(), GetInput());
+  cout << "Are there any more classifiers to train on?\ny or n\n";
+
+  while (AskYesOrNo())
+  {
+    cout << "What is the classifier?\n";
+    ret.insert(ret.end(), GetInput());
+    cout << "Are there any more classifiers to train on?\ny or n\n";
+  }
+
+  return ret;
 }
 
 std::string Interface::GetInput()
