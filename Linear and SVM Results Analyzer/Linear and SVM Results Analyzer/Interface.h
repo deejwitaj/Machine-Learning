@@ -24,6 +24,9 @@ private:
   std::string GetFirstWord(std::string const line);
   std::string GetInput();
 
+  void StorePredictedResults();
+  void StoreTrueResults();
+
   int AskThisOrThat(std::string const first, std::string const second);
   bool AskYesOrNo();
 };

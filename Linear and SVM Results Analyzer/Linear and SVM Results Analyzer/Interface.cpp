@@ -17,13 +17,11 @@ void Interface::Init()
   case 1:
     cout << "Ok, lets analyze linear\nWhere is my preprocessed testing data?\n";
     m_fileReader.OpenFile(GetInput());
-    while (m_fileReader.bHasNewLine())
-    {
-      auto word = GetFirstWord(m_fileReader.GetNextLine());
-      if ((word.compare("")))
-        m_trueResults.emplace_back(stoi(word));
-    }
-    cout << "True results read in\n";
+    StoreTrueResults();
+    m_fileReader.CloseFile();
+    cout << "And where are my predicted results?\n";
+    m_fileReader.OpenFile(GetInput());
+    StorePredictedResults();
     m_fileReader.CloseFile();
     break;
   case 2:
@@ -35,6 +33,28 @@ void Interface::Init()
   pause();
 }
 
+//Stores the actual classifications of each file from a preprocessed data file that m_fileReader currently has open
+void Interface::StoreTrueResults()
+{
+  while (m_fileReader.bHasNewLine())
+  {
+    auto word = GetFirstWord(m_fileReader.GetNextLine());
+    if ((word.compare("")))
+      m_trueResults.emplace_back(stoi(word));
+  }
+  cout << "True results read in\n";
+}
+
+void Interface::StorePredictedResults()
+{
+  while (m_fileReader.bHasNewLine())
+  {
+    auto digit = m_fileReader.GetNextLine();
+    if ((digit.compare("")))
+      m_predictedResults.emplace_back(stoi(digit));
+  }
+  cout << "Predicted results read in\n";
+}
 //Returns 1 if the first choice was picked and 2 if the second choice was picked
 int Interface::AskThisOrThat(std::string const first, std::string const second)
 {
@@ -92,6 +112,8 @@ std::string Interface::GetFirstWord(std::string const line)
     else
       return firstWord;
   }
+
+  return firstWord;
 }
 
 std::string Interface::GetInput()
