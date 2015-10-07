@@ -12,6 +12,7 @@ void Interface::Init()
 {
   cout << "Am I analyzing linear or SVM results?\n";
   auto result = AskThisOrThat("linear", "SVM");
+  double macroFScore = 0;
   switch (result)
   {
   case 1:
@@ -23,6 +24,21 @@ void Interface::Init()
     m_fileReader.OpenFile(GetInput());
     StorePredictedResults();
     m_fileReader.CloseFile();
+    CreateConfusionMatrix();
+    cout << "Where would you like me to place the scores?";
+    m_fileWriter.OpenFile(GetInput());
+    for (auto it : m_confusionMatrix)
+    {
+      double precision = CalculatePrecision(it.first, it.second);
+      double recall = CalculateRecall(it.first, it.second);
+      double fScore = CalculateFScore(precision, recall);
+      macroFScore += fScore;
+      m_fileWriter.AddLine("The precision for classification " + std::to_string(it.first) + " is " + std::to_string(precision) + "\n");
+      m_fileWriter.AddLine("The recall for classification " + std::to_string(it.first) + " is " + std::to_string(recall) + "\n");
+      m_fileWriter.AddLine("The F1 Score for classification " + std::to_string(it.first) + " is " + std::to_string(fScore) + "\n");
+    }
+    m_fileWriter.AddLine("The Macro-F1 score across all categories is " + std::to_string(macroFScore / 20.0) + "\n");
+    m_fileWriter.CloseFile();
     break;
   case 2:
     cout << "Ok, lets analyze SVM\n";
@@ -39,6 +55,7 @@ void Interface::StoreTrueResults()
   while (m_fileReader.bHasNewLine())
   {
     auto word = GetFirstWord(m_fileReader.GetNextLine());
+    //For some reason, the last line is a blank line. So we check for this to avoid attempting to stoi a blank line
     if ((word.compare("")))
       m_trueResults.emplace_back(stoi(word));
   }
@@ -50,6 +67,7 @@ void Interface::StorePredictedResults()
   while (m_fileReader.bHasNewLine())
   {
     auto digit = m_fileReader.GetNextLine();
+    //For some reason, the last line is a blank line. So we check for this to avoid attempting to stoi a blank line
     if ((digit.compare("")))
       m_predictedResults.emplace_back(stoi(digit));
   }
@@ -79,6 +97,91 @@ bool Interface::AskYesOrNo()
 void Interface::pause()
 {
   std::cin.get();
+}
+
+double Interface::CalculateFScore(double i_precision, double i_recall)
+{
+  if ((i_precision + i_recall) == 0)
+    return 0;
+
+  return ((2 * i_precision*i_recall) / (i_precision + i_recall));
+}
+
+double Interface::CalculatePrecision(int i_classifier, confusionMatrix i_confusionMatrix)
+{
+  auto it = m_confusionMatrix.find(i_classifier);
+  if (it != m_confusionMatrix.end())
+  {
+    double truePositive = it->second.truePositive;
+    double falsePositive = it->second.falsePositive;
+
+    if ((falsePositive + truePositive) == 0)
+      return 0;
+
+    return (truePositive / (falsePositive + truePositive));
+  }
+
+  return 0;
+}
+
+double Interface::CalculateRecall(int i_classifier, confusionMatrix i_confusionMatrix)
+{
+  auto it = m_confusionMatrix.find(i_classifier);
+  if (it != m_confusionMatrix.end())
+  {
+    double truePositive = it->second.truePositive;
+    double falseNegative = it->second.falseNegative;
+
+    if ((truePositive + falseNegative) == 0)
+      return 0;
+
+    return (truePositive / (truePositive + falseNegative));
+  }
+
+  return 0;
+}
+void Interface::CreateConfusionMatrix()
+{
+  for (int i = 1; i <= 20; i++)
+  {
+    m_confusionMatrix.insert(std::make_pair(i, confusionMatrix()));
+  }
+
+  auto trueIt = m_trueResults.begin();
+  auto predictedIt = m_predictedResults.begin();
+  while ((trueIt != m_trueResults.end()) && (predictedIt != m_predictedResults.end()))
+  {
+    /*If the values match in predicted and true, then it means we have both found a true positive for the current classifier
+      and a true negative for all other classifiers*/
+    if (*trueIt == *predictedIt)
+    {
+      auto it = m_confusionMatrix.find(*trueIt);
+      if (it != m_confusionMatrix.end())
+      {
+        it->second.truePositive += 1;
+        for (auto& innerit : m_confusionMatrix)
+        {
+          if (innerit.first != *trueIt)
+            innerit.second.trueNegative += 1;
+        }
+      }
+    }
+
+    /*If the values do not match, then we have both a false negative for the current trueIt value and a false positive for the current
+      predictedIt value*/
+    else
+    {
+      auto innerTrueIt = m_confusionMatrix.find(*trueIt);
+      if (innerTrueIt != m_confusionMatrix.end())
+        innerTrueIt->second.falseNegative += 1;
+      auto innerPredIt = m_confusionMatrix.find(*predictedIt);
+      if (innerPredIt != m_confusionMatrix.end())
+        innerPredIt->second.falsePositive += 1;
+    }
+
+    trueIt++;
+    predictedIt++;
+  }
 }
 
 std::list<std::string> Interface::GetDirectoryOfFiles()
